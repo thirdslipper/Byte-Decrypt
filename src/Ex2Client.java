@@ -1,3 +1,8 @@
+/**
+ * Author: Colin Koo
+ * Professor: Davarpanah
+ * 
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,16 +22,14 @@ public class Ex2Client {
 			PrintWriter pw = new PrintWriter(socket.getOutputStream());
 			
 			InputStream is = socket.getInputStream();
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			
+//			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			String message1, message2;
+
 			for (int i = 0; i < 100; ++i){
 //				message1 = "";
 //				message2 = "";
-				
 				message1 = Integer.toHexString(is.read());
 				message2 = Integer.toHexString(is.read());
-				
 //				System.out.println(i + ": " + message1 + " and " + message2);
 				fullMsg += message1 + message2;
 			}
@@ -39,10 +42,20 @@ public class Ex2Client {
 			
 			String crcResult = Integer.toHexString((int) crc.getValue()).toUpperCase();
 			System.out.println("Generated CRC32: " + crcResult);
-			
+
 			pw.println(crcResult);
-			System.out.println(br.readLine());
 			
+			int check = is.read();
+			// doesn't work after this point
+			if (check == 1){
+				System.out.println("Reponse good.");
+			}
+			else if(check == 0){
+				System.out.println("Response bad.");
+			}
+			else{
+				System.out.println("No response");
+			}
 		}
 	}
 }
