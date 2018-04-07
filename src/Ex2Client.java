@@ -4,12 +4,9 @@
  * Assignment : Exercise 2: We are connecting to a hosted server, then receiving bytes from the server in segments.
  * 				We then put the bytes together and send a CRC32 key back to the server.
  */
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.zip.CRC32;
@@ -73,7 +70,10 @@ public class Ex2Client {
 			default:
 				System.out.println("No response");
 			}
+			is.close();
+			os.close();
 			System.out.println("Disconnected from server.");
 		}
+		
 	}
 }
