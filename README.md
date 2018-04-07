@@ -1,4 +1,4 @@
-# CS380-EX2
+# Byte-Decrypt
 Author : Colin Koo
 Professor : Nima Davarpanah
 This project was to connect to a remotely hosted server, receiving certain bytes in segments.  
